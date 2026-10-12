@@ -1,0 +1,10 @@
+# Service worker harus selalu diambil versi terbaru
+<IfModule mod_headers.c>
+  <Files "sw.js">
+    Header set Cache-Control "no-cache"
+  </Files>
+</IfModule>
+# Lindungi file konfigurasi & SQL
+<FilesMatch "\.(sql|md)$">
+  Require all denied
+</FilesMatch>

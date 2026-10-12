@@ -1,0 +1,23 @@
+{
+  "name": "Rehab Rumah – Catatan Pengeluaran",
+  "short_name": "Rehab Rumah",
+  "description": "Catat bahan baku, absensi, honor tukang & pelayan, kasbon dan bon toko.",
+  "lang": "id",
+  "start_url": "./index.php?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f6f4f1",
+  "theme_color": "#b45309",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Absen hari ini", "short_name": "Absensi", "url": "./absensi.php", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Catat belanja bahan", "short_name": "Belanja", "url": "./bahan.php?form=1", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Kasbon tukang", "short_name": "Kasbon", "url": "./kasbon.php", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

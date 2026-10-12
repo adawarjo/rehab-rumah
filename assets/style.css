@@ -1,0 +1,91 @@
+:root {
+  --brand: #b45309;
+  --brand-dark: #92400e;
+  --bs-primary: #b45309;
+  --bs-primary-rgb: 180, 83, 9;
+  --bs-link-color: #b45309;
+  --bs-link-hover-color: #92400e;
+}
+body { background: #f6f4f1; padding-bottom: 76px; }
+@media (min-width: 992px) { body { padding-bottom: 0; } }
+
+.btn-primary { --bs-btn-bg: var(--brand); --bs-btn-border-color: var(--brand); --bs-btn-hover-bg: var(--brand-dark); --bs-btn-hover-border-color: var(--brand-dark); --bs-btn-active-bg: var(--brand-dark); }
+.btn-outline-primary { --bs-btn-color: var(--brand); --bs-btn-border-color: var(--brand); --bs-btn-hover-bg: var(--brand); --bs-btn-hover-border-color: var(--brand); --bs-btn-active-bg: var(--brand); }
+.list-group-item.active { background: var(--brand); border-color: var(--brand); }
+.form-control:focus, .form-select:focus { border-color: #f59e0b; box-shadow: 0 0 0 .2rem rgba(245,158,11,.2); }
+
+.topbar { background: var(--brand); }
+.topbar .navbar-brand { font-weight: 600; font-size: 1.05rem; max-width: 75vw; }
+
+/* Sidebar desktop */
+@media (min-width: 992px) {
+  .sidebar { position: fixed; top: 56px; left: 0; bottom: 0; width: 230px; background: #fff; border-right: 1px solid #e5e1dc; overflow-y: auto; }
+  .main-content { margin-left: 230px; max-width: min(1100px, calc(100% - 230px)); }
+}
+
+/* Bottom nav mobile */
+.bottomnav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 1030; display: flex; background: #fff; border-top: 1px solid #e5e1dc; padding-bottom: env(safe-area-inset-bottom); }
+.bottomnav a { flex: 1; text-align: center; padding: 7px 0 5px; color: #78716c; text-decoration: none; font-size: .7rem; }
+.bottomnav a i { display: block; font-size: 1.3rem; line-height: 1.2; }
+.bottomnav a.active { color: var(--brand); font-weight: 600; }
+
+.card { border: 0; border-radius: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.stat .label { font-size: .75rem; color: #78716c; text-transform: uppercase; letter-spacing: .03em; }
+.stat .value { font-size: 1.15rem; font-weight: 700; }
+.stat i.ic { font-size: 1.4rem; opacity: .8; }
+.money { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.table { --bs-table-bg: transparent; }
+.table td, .table th { vertical-align: middle; }
+.table-sm td, .table-sm th { padding: .45rem .4rem; }
+.small-muted { font-size: .8rem; color: #78716c; }
+
+/* Daftar transaksi gaya kartu (mobile friendly) */
+.tx { display: flex; gap: .75rem; align-items: center; padding: .7rem .9rem; border-bottom: 1px solid #f0ece7; }
+.tx:last-child { border-bottom: 0; }
+.tx .tx-main { flex: 1; min-width: 0; }
+.tx .tx-title { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Absensi: tombol status besar */
+.absen-row { padding: .75rem .9rem; border-bottom: 1px solid #f0ece7; }
+.absen-row .btn-check + .btn { min-width: 52px; }
+.btn-check:checked + .btn-outline-success { background: #16a34a; color: #fff; }
+.btn-check:checked + .btn-outline-warning { background: #f59e0b; color: #fff; }
+.btn-check:checked + .btn-outline-danger { background: #dc2626; color: #fff; }
+
+.rekap-table th, .rekap-table td { text-align: center; font-size: .8rem; padding: .3rem .25rem; }
+.rekap-table td:first-child, .rekap-table th:first-child { text-align: left; position: sticky; left: 0; background: #fff; white-space: nowrap; }
+.st-H { color: #16a34a; font-weight: 700; } .st-S { color: #d97706; font-weight: 700; } .st-A { color: #dc2626; }
+
+.fab { position: fixed; right: 18px; bottom: 86px; z-index: 1020; width: 56px; height: 56px; border-radius: 50%; font-size: 1.6rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,.25); }
+@media (min-width: 992px) { .fab { bottom: 24px; } }
+
+@media print {
+  body { background: #fff; padding: 0; }
+  .main-content { margin: 0 !important; max-width: none; }
+  .card { box-shadow: none; border: 1px solid #ddd; }
+}
+
+/* ===== Dashboard ===== */
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: baseline; }
+.stat .value { font-variant-numeric: normal; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .8rem; color: #52514e; }
+.hbar { height: 8px; background: #f0ece7; border-radius: 4px; overflow: hidden; }
+.hbar > div { height: 100%; border-radius: 4px; }
+.chart-box { position: relative; height: 240px; }
+.chart-box.chart-sm { height: 170px; }
+@media (min-width: 992px) { .chart-box { height: 300px; } .chart-box.chart-sm { height: 200px; } }
+.sticky-filter { position: sticky; top: 56px; z-index: 10; background: #f6f4f1; padding: 6px 0; }
+
+/* Peran harian di absensi */
+.btn-outline-tukang { --bs-btn-color: #b45309; --bs-btn-border-color: #e7c9a9; --bs-btn-hover-bg: #fdf3e7; --bs-btn-hover-color: #b45309; --bs-btn-hover-border-color: #e7c9a9; }
+.btn-outline-pelayan { --bs-btn-color: #0e7490; --bs-btn-border-color: #a5d8e3; --bs-btn-hover-bg: #ecf8fb; --bs-btn-hover-color: #0e7490; --bs-btn-hover-border-color: #a5d8e3; }
+.btn-check:checked + .btn-outline-tukang { background: #b45309; border-color: #b45309; color: #fff; }
+.btn-check:checked + .btn-outline-pelayan { background: #0e7490; border-color: #0e7490; color: #fff; }
+.peran-toggle .btn { font-size: .78rem; padding: .25rem .55rem; }
+.badge-tukang { background: #fdf3e7; color: #92400e; } .badge-pelayan { background: #ecf8fb; color: #0e7490; }
+.rekap-table td.pr-tukang { color: #b45309; font-weight: 700; } .rekap-table td.pr-pelayan { color: #0e7490; font-weight: 700; }
+
+/* PWA */
+.offline-bar { position: sticky; top: 56px; z-index: 1025; background: #44403c; color: #fff; font-size: .8rem; text-align: center; padding: 6px 12px; }
+@media (min-width: 992px) { .offline-bar { margin-left: 230px; } }
+@media (display-mode: standalone) { .topbar { padding-top: env(safe-area-inset-top); } }
