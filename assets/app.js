@@ -139,3 +139,13 @@ document.addEventListener('submit', function (e) {
       html: 'Buka di <b>Safari</b>, tekan tombol <b>Bagikan</b> <i class="bi bi-box-arrow-up"></i>, lalu pilih <b>Tambah ke Layar Utama</b>.' });
   });
 })();
+
+// Captcha login: tombol ganti kode. Saat halaman dibuka lagi lewat tombol Kembali,
+// kodenya sudah tidak berlaku, jadi gambar juga diganti.
+(function () {
+  const img = document.getElementById('captcha-img'), input = document.getElementById('captcha');
+  if (!img || !input) return;
+  const baru = () => { img.src = 'captcha.php?t=' + Date.now(); input.value = ''; };
+  document.getElementById('captcha-baru').addEventListener('click', () => { baru(); input.focus(); });
+  window.addEventListener('pageshow', e => { if (e.persisted) baru(); });
+})();
