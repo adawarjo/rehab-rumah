@@ -69,6 +69,59 @@ $semua = $dari === '2000-01-01';
 $bln_ini = date('Y-m-01');
 $bln_lalu = date('Y-m-01', strtotime('first day of last month'));
 $akhir_bln_lalu = date('Y-m-t', strtotime('last month'));
+$periode = $semua ? 'semua data' : tgl($dari) . ' – ' . tgl($sampai);
+ksort($bulanan);
+
+// ---- Unduh PDF ----
+if (isset($_GET['pdf'])) {
+    require 'inc/pdf.php';
+    $ribu = fn($n) => number_format((float)$n, 0, ',', '.');
+    $pdf = new PDF('Laporan Pengeluaran', 'Periode: ' . $periode);
+
+    $pdf->bagian('Ringkasan biaya');
+    $pdf->tabel([['Kategori', 0], ['Jumlah', 45, 'R'], ['%', 20, 'R']],
+        array_map(fn($k, $v) => [$k, rp($v), ($total ? round($v / $total * 100) : 0) . '%'], array_keys($kat), $kat),
+        ['Total biaya', rp($total), '']);
+
+    $pdf->bagian('Uang keluar (arus kas)');
+    $kas_ada = array_filter($kas);
+    $pdf->tabel([['Uraian', 0], ['Jumlah', 45, 'R']],
+        array_map(fn($k, $v) => [$k, rp($v)], array_keys($kas_ada), $kas_ada),
+        ['Total uang keluar', rp(array_sum($kas))]);
+    $pdf->catatan('Berbeda dari total biaya karena bon toko yang belum dibayar dan kasbon yang belum dipotong.');
+
+    if (count($bulanan) > 1) {
+        $pdf->bagian('Per bulan (Rp)');
+        $pdf->tabel(array_merge([['Bulan', 0]], array_map(fn($j) => [$j, 29, 'R'], ['Bahan', 'Tukang', 'Pelayan', 'Lain', 'Total'])),
+            array_map(fn($m, $v) => [substr(tgl("$m-01"), 2), ...array_map(fn($k) => $ribu($v[$k] ?? 0), array_keys($kat)), $ribu(array_sum($v))],
+                array_keys($bulanan), $bulanan),
+            ['Total', ...array_map($ribu, array_values($kat)), $ribu($total)]);
+    }
+
+    $pdf->bagian('Bahan per toko');
+    $pdf->tabel([['Toko', 0], ['Belum dibayar (bon)', 42, 'R'], ['Total belanja', 40, 'R']],
+        array_map(fn($t) => [$t['nama'], $t['bon'] > 0 ? rp($t['bon']) : '-', rp($t['jml'])], $per_toko));
+
+    $pdf->bagian('Honor per pekerja');
+    $pdf->tabel([['Nama', 0], ['Hari kerja', 55], ['Honor', 40, 'R']],
+        array_map(fn($p) => [$p['nama'], hari_peran($p['h_tukang'], $p['h_pelayan']), rp($p['jml'])], $per_pekerja));
+
+    if ($top_barang) {
+        $pdf->bagian('10 bahan terbesar');
+        $pdf->tabel([['Barang', 0], ['Jumlah', 40, 'R'], ['Total', 40, 'R']],
+            array_map(fn($b) => [$b['nama_barang'], num($b['qty']) . ' ' . $b['satuan'], rp($b['jml'])], $top_barang));
+    }
+
+    if ($tx) $pdf->AddPage();
+    $pdf->bagian('Rincian transaksi');
+    $pdf->tabel([['Tanggal', 22], ['Kategori', 24], ['Uraian', 0], ['Toko/Pekerja', 30], ['Ket.', 22], ['Jumlah (Rp)', 24, 'R']],
+        array_map(fn($t) => [tgl($t['tanggal']), $t['kategori'], $t['uraian'], $t['pihak'],
+            preg_replace_callback('/\d+/', fn($m) => $ribu($m[0]), $t['ket']), $ribu($t['jumlah'])], $tx),   // "Potong kasbon 200.000"
+        ['Total', '', count($tx) . ' transaksi', '', '', $ribu($total)]);
+
+    $pdf->Output('D', 'laporan-rehab-' . $dari . '_' . $sampai . '.pdf');
+    exit;
+}
 
 $header_action = '<button onclick="window.print()" class="btn btn-light btn-sm d-print-none"><i class="bi bi-printer"></i></button>';
 require 'inc/header.php';
@@ -89,7 +142,7 @@ require 'inc/header.php';
   </div>
 </form>
 
-<div class="small-muted mb-2"><?= e(setting('nama_proyek')) ?> · Periode: <?= $semua ? 'semua data' : tgl($dari) . ' – ' . tgl($sampai) ?></div>
+<div class="small-muted mb-2"><?= e(setting('nama_proyek')) ?> · Periode: <?= $periode ?></div>
 
 <div class="card mb-3">
   <div class="card-header bg-white fw-semibold">Ringkasan biaya</div>
@@ -115,7 +168,7 @@ require 'inc/header.php';
   </div>
 </div>
 
-<?php if (count($bulanan) > 1): ksort($bulanan); ?>
+<?php if (count($bulanan) > 1): ?>
 <div class="card mb-3">
   <div class="card-header bg-white fw-semibold">Per bulan</div>
   <div class="table-responsive">
@@ -169,6 +222,9 @@ require 'inc/header.php';
 </div>
 <?php endif; ?>
 
-<a href="?<?= e(http_build_query(['dari' => $dari, 'sampai' => $sampai, 'csv' => 1])) ?>" class="btn btn-outline-success d-print-none"><i class="bi bi-file-earmark-spreadsheet"></i> Unduh rincian (Excel/CSV)</a>
+<div class="d-flex flex-wrap gap-2 d-print-none">
+  <a href="?<?= e(http_build_query(['dari' => $dari, 'sampai' => $sampai, 'pdf' => 1])) ?>" class="btn btn-outline-danger"><i class="bi bi-file-earmark-pdf"></i> Unduh laporan (PDF)</a>
+  <a href="?<?= e(http_build_query(['dari' => $dari, 'sampai' => $sampai, 'csv' => 1])) ?>" class="btn btn-outline-success"><i class="bi bi-file-earmark-spreadsheet"></i> Unduh rincian (Excel/CSV)</a>
+</div>
 
 <?php require 'inc/footer.php'; ?>

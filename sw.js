@@ -62,7 +62,7 @@ self.addEventListener('fetch', e => {
   // Navigasi halaman: jaringan dulu, cadangan dari cache
   if (req.mode === 'navigate') {
     const isLogout = url.pathname.endsWith('/logout.php');
-    const noCache = isLogout || url.pathname.endsWith('/login.php') || url.searchParams.has('csv');
+    const noCache = isLogout || url.pathname.endsWith('/login.php') || url.searchParams.has('csv') || url.searchParams.has('pdf');
     e.respondWith((async () => {
       if (isLogout) await caches.delete(PAGES);
       try {

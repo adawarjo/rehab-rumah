@@ -7,6 +7,7 @@ Aplikasi PHP 8 + MySQL (PDO) tanpa framework untuk mencatat pengeluaran rehab ru
 - `inc/functions.php`: helper `q()`, `rows()`, `row()`, `val()`, `e()`, `rp()`, `num()`, `angka()`, `flash()`, `tarif()`, `rincian_upah()`, konstanta `SQL_HARI`, `SQL_UPAH`, `SQL_KASBON`.
 - `database.sql` = skema lengkap untuk instal baru. Perubahan skema untuk database yang sudah jalan → buat file `migrasi_<nama>.sql` terpisah.
 - `assets/vendor/` berisi Bootstrap 5.3, Bootstrap Icons, SweetAlert2, Chart.js — semua lokal, jangan ganti ke CDN.
+- `lib/fpdf/` berisi FPDF 1.86 (font bawaan Helvetica, encoding Windows-1252). Buat PDF lewat class `PDF` di `inc/pdf.php` (`bagian()`, `tabel()`, `catatan()`); teks UTF-8 diubah otomatis.
 
 ## Aturan bisnis penting
 - Tarif honor mengikuti **peran per hari** (tukang/pelayan) yang dicatat di tabel `absensi` (`peran`, `upah_harian`, `upah_lembur`), bukan per orang.

@@ -33,7 +33,7 @@ Syarat: situs dibuka lewat **HTTPS** (hosting dengan SSL, mis. Let's Encrypt gra
 6. **Bahan Baku** – catat belanja per barang (jumlah × harga otomatis). Pilih **Tunai** atau **Bon**. Tombol "Simpan & tambah lagi" untuk satu nota berisi banyak barang.
 7. **Toko & Bon Bahan** – sisa hutang per toko, catat pembayaran/cicilan bon.
 8. **Pengeluaran Lain** – konsumsi, transport, sewa alat, buang puing, dll.
-9. **Laporan** – ringkasan biaya per kategori, per bulan, per toko, per pekerja, arus kas keluar, cetak, dan unduh CSV untuk Excel.
+9. **Laporan** – ringkasan biaya per kategori, per bulan, per toko, per pekerja, arus kas keluar, cetak, unduh PDF (ringkasan + rincian semua transaksi), dan unduh CSV untuk Excel.
 
 ## Cara hitung
 - **Total biaya** = semua belanja bahan (tunai + bon) + honor kotor (upah + lembur + tambahan) + pengeluaran lain.
@@ -49,12 +49,13 @@ Kalau database versi lama (tarif per orang) sudah terpasang, import `migrasi_tar
 ```
 config.example.php  contoh koneksi database (salin jadi config.php)
 database.sql        struktur tabel + user admin
-inc/                init, fungsi bantu, header & footer
+inc/                init, fungsi bantu, header & footer, pdf.php (pembuat PDF)
 assets/             CSS, JS, Bootstrap lokal, ikon aplikasi
+lib/fpdf/           library PDF (FPDF 1.86), tidak bisa dibuka langsung dari browser
 manifest.json, sw.js, offline.html   PWA (pasang di HP & mode offline)
 index.php           beranda / ringkasan
 absensi.php, rekap_absensi.php
 gaji.php, slip.php, kasbon.php, pekerja.php
 bahan.php, toko.php, lain.php
-laporan.php, pengaturan.php, login.php, logout.php
+laporan.php, pengaturan.php, login.php, logout.php, captcha.php
 ```
