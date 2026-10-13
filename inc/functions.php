@@ -28,6 +28,14 @@ const SQL_UPAH = "((CASE a.status WHEN 'H' THEN 1 WHEN 'S' THEN 0.5 ELSE 0 END) 
 // Saldo kasbon: pinjam menambah, potong mengurangi
 const SQL_KASBON = "CASE k.jenis WHEN 'pinjam' THEN k.jumlah ELSE -k.jumlah END";
 
+// Warna kategori biaya (urutan tetap, aman untuk buta warna) — dipakai di dashboard & PDF laporan
+const KAT = [
+    'Bahan baku'    => '#2a78d6',
+    'Honor tukang'  => '#eb6834',
+    'Honor pelayan' => '#1baf7a',
+    'Lain-lain'     => '#eda100',
+];
+
 // ---------- Format ----------
 function e($s): string { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 function rp($n): string { return 'Rp ' . number_format((float)$n, 0, ',', '.'); }

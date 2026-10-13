@@ -19,7 +19,7 @@ $bottom = ['index', 'absensi', 'bahan', 'kasbon'];
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#b45309">
+<meta name="theme-color" content="#ea580c">
 <title><?= e($title) ?> · <?= e(setting('nama_proyek', 'Rehab Rumah')) ?></title>
 <link href="assets/vendor/bootstrap.min.css" rel="stylesheet">
 <link href="assets/vendor/bootstrap-icons.min.css" rel="stylesheet">
@@ -35,7 +35,7 @@ $bottom = ['index', 'absensi', 'bahan', 'kasbon'];
     <a class="navbar-brand me-auto text-truncate" href="index.php">
       <i class="bi bi-hammer"></i> <?= e(setting('nama_proyek', 'Rehab Rumah')) ?>
     </a>
-    <a href="logout.php" class="text-white-50 small" data-confirm="Keluar dari aplikasi?" data-confirm-ok="Ya, keluar"><i class="bi bi-box-arrow-right"></i></a>
+    <a href="logout.php" class="text-white opacity-75 small" data-confirm="Keluar dari aplikasi?" data-confirm-ok="Ya, keluar"><i class="bi bi-box-arrow-right"></i></a>
   </div>
 </nav>
 

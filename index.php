@@ -3,14 +3,6 @@ require 'inc/init.php';
 $title = 'Dashboard';
 $active = 'index';
 
-// Warna seri (urutan tetap, aman untuk buta warna) — dipakai di kartu, grafik & legenda
-const KAT = [
-    'Bahan baku'    => '#2a78d6',
-    'Honor tukang'  => '#eb6834',
-    'Honor pelayan' => '#1baf7a',
-    'Lain-lain'     => '#eda100',
-];
-
 // ================= Angka keseluruhan proyek =================
 $bahan       = (float)val('SELECT COALESCE(SUM(total),0) FROM bahan');
 $upah_tukang = (float)val('SELECT COALESCE(SUM(biaya_tukang),0) FROM gaji');
@@ -139,7 +131,7 @@ require 'inc/header.php';
 ?>
 
 <!-- ===== Ringkasan anggaran ===== -->
-<div class="card mb-3 text-white" style="background:linear-gradient(135deg,#b45309,#78350f)">
+<div class="card hero mb-3">
   <div class="card-body">
     <div class="small text-white-50 text-uppercase">Total biaya rehab</div>
     <div class="fs-2 fw-bold"><?= rp($total_biaya) ?></div>

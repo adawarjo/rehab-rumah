@@ -4,7 +4,7 @@
  * - Form (POST) tidak pernah disimpan/diputar ulang; saat offline aplikasi memberi peringatan.
  * Naikkan VERSION setiap kali file di assets/ diubah agar HP mengambil versi baru.
  */
-const VERSION = 'rehab-v2';
+const VERSION = 'rehab-v3';
 const STATIC = VERSION + '-static';
 const PAGES = VERSION + '-pages';
 

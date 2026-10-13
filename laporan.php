@@ -78,10 +78,16 @@ if (isset($_GET['pdf'])) {
     $ribu = fn($n) => number_format((float)$n, 0, ',', '.');
     $pdf = new PDF('Laporan Pengeluaran', 'Periode: ' . $periode);
 
+    $pdf->kartu([
+        ['Total biaya', rp($total), 'Bahan, honor & lain-lain'],
+        ['Uang keluar', rp(array_sum($kas)), 'Yang benar-benar dibayarkan'],
+        ['Transaksi', count($tx) . ' catatan', $semua ? 'Semua data' : 'Dalam periode ini'],
+    ]);
+
     $pdf->bagian('Ringkasan biaya');
-    $pdf->tabel([['Kategori', 0], ['Jumlah', 45, 'R'], ['%', 20, 'R']],
-        array_map(fn($k, $v) => [$k, rp($v), ($total ? round($v / $total * 100) : 0) . '%'], array_keys($kat), $kat),
-        ['Total biaya', rp($total), '']);
+    $pdf->tabel([['Kategori', 0], ['Porsi', 60, 'P'], ['Jumlah', 42, 'R']],
+        array_map(fn($k, $v) => [$k, $total ? $v / $total * 100 : 0, rp($v), '_warna' => KAT[$k]], array_keys($kat), $kat),
+        ['Total biaya', '', rp($total)]);
 
     $pdf->bagian('Uang keluar (arus kas)');
     $kas_ada = array_filter($kas);
@@ -149,8 +155,8 @@ require 'inc/header.php';
   <div class="card-body py-2">
     <?php foreach ($kat as $k => $v): $pct = $total ? $v / $total * 100 : 0; ?>
       <div class="py-1">
-        <div class="d-flex justify-content-between"><span><?= $k ?></span><span class="money"><?= rp($v) ?> <small class="text-muted"><?= round($pct) ?>%</small></span></div>
-        <div class="progress" style="height:5px"><div class="progress-bar" style="width:<?= $pct ?>%"></div></div>
+        <div class="d-flex justify-content-between"><span><span class="dot" style="background:<?= KAT[$k] ?>"></span><?= $k ?></span><span class="money"><?= rp($v) ?> <small class="text-muted"><?= round($pct) ?>%</small></span></div>
+        <div class="hbar mt-1"><div style="width:<?= $pct ?>%;background:<?= KAT[$k] ?>"></div></div>
       </div>
     <?php endforeach; ?>
     <div class="d-flex justify-content-between fw-bold border-top pt-2 mt-2 fs-6"><span>Total biaya</span><span class="money"><?= rp($total) ?></span></div>

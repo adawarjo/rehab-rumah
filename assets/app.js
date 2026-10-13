@@ -17,7 +17,7 @@ document.addEventListener('input', function (e) {
 document.querySelectorAll('input.uang').forEach(el => el.value = fmtUang(el.value));
 
 // ================= SweetAlert2 =================
-const BRAND = '#b45309';
+const BRAND = '#ea580c';
 const Toast = Swal.mixin({
   toast: true, position: 'top', showConfirmButton: false, timer: 2500, timerProgressBar: true,
   didOpen: t => { t.addEventListener('mouseenter', Swal.stopTimer); t.addEventListener('mouseleave', Swal.resumeTimer); }
@@ -43,7 +43,7 @@ function konfirmasi(el) {
   return Swal.fire({
     html: div, icon: danger ? 'warning' : 'question', showCancelButton: true, reverseButtons: true, focusCancel: danger,
     confirmButtonText: el.dataset.confirmOk || 'Ya', cancelButtonText: 'Batal',
-    confirmButtonColor: danger ? '#dc2626' : BRAND, cancelButtonColor: '#78716c'
+    confirmButtonColor: danger ? '#dc2626' : BRAND, cancelButtonColor: '#64748b'
   }).then(r => r.isConfirmed);
 }
 

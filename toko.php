@@ -139,7 +139,7 @@ else:
     usort($list, fn($a, $b) => ($b['bon'] - $b['dibayar']) <=> ($a['bon'] - $a['dibayar']));
     $tot_sisa = array_sum(array_map(fn($t) => $t['bon'] - $t['dibayar'], $list));
 ?>
-<div class="card mb-3 text-white" style="background:#991b1b">
+<div class="card hero-danger mb-3">
   <div class="card-body"><div class="small text-white-50 text-uppercase">Total hutang ke toko</div><div class="fs-3 fw-bold money"><?= rp($tot_sisa) ?></div></div>
 </div>
 <div class="card">

@@ -3,7 +3,7 @@
   const D = window.DASH;
   if (!D || !window.Chart) return;
 
-  const INK = '#52514e', MUTED = '#8a8780', GRID = '#eeebe6', SURFACE = '#ffffff';
+  const INK = '#334155', MUTED = '#64748b', GRID = '#eef2f7', SURFACE = '#ffffff';
   const rp = v => 'Rp ' + Math.round(v).toLocaleString('id-ID');
   // Singkatan sumbu: 1.250.000 -> 1,3 jt
   const singkat = v => {
@@ -21,7 +21,7 @@
   Chart.defaults.animation.duration = 400;
 
   const tooltip = {
-    backgroundColor: '#1c1917', titleColor: '#fff', bodyColor: '#e7e5e4', padding: 10, cornerRadius: 8,
+    backgroundColor: '#0f172a', titleColor: '#fff', bodyColor: '#e2e8f0', padding: 10, cornerRadius: 8,
     boxWidth: 10, boxHeight: 10, boxPadding: 4, usePointStyle: true,
   };
   const xAxis = { grid: { display: false }, border: { color: GRID }, ticks: { maxRotation: 0, autoSkipPadding: 12 } };
@@ -65,7 +65,7 @@
       pointHoverBorderColor: SURFACE,
     }];
     if (D.anggaran > 0) ds.push({
-      label: 'Anggaran', data: D.labels.map(() => D.anggaran), borderColor: '#78716c', borderWidth: 1.5,
+      label: 'Anggaran', data: D.labels.map(() => D.anggaran), borderColor: '#64748b', borderWidth: 1.5,
       borderDash: [6, 4], pointRadius: 0, pointHoverRadius: 0, fill: false,
     });
     new Chart(elK, {

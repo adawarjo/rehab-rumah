@@ -44,7 +44,7 @@ foreach (str_split($kode) as $i => $d) {
 header('Content-Type: image/svg+xml');
 header('Cache-Control: no-store, no-cache, must-revalidate');
 echo '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 50" width="150" height="50">',
-     '<rect width="150" height="50" fill="#fafaf9"/>',
-     '<g fill="none" stroke="#d6d3d1" stroke-width="1.5">', $garis, '</g>',
+     '<rect width="150" height="50" fill="#f8fafc"/>',
+     '<g fill="none" stroke="#cbd5e1" stroke-width="1.5">', $garis, '</g>',
      '<g fill="none" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">', $angka, '</g>',
      '</svg>';

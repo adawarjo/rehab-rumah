@@ -85,12 +85,12 @@ require 'inc/header.php';
   <?php foreach ($list as $p): ?>
     <div class="tx <?= $p['aktif'] ? '' : 'opacity-50' ?>">
       <div class="rounded-circle d-flex align-items-center justify-content-center text-white flex-shrink-0"
-           style="width:40px;height:40px;background:<?= $p['jenis'] === 'tukang' ? '#b45309' : '#0891b2' ?>">
+           style="width:40px;height:40px;background:<?= $p['jenis'] === 'tukang' ? 'var(--brand)' : '#0891b2' ?>">
         <?= e(mb_strtoupper(mb_substr($p['nama'], 0, 1))) ?>
       </div>
       <div class="tx-main">
         <div class="tx-title"><?= e($p['nama']) ?>
-          <span class="badge <?= $p['jenis'] === 'tukang' ? 'text-bg-warning' : 'text-bg-info' ?> fw-normal"><?= ucfirst($p['jenis']) ?></span>
+          <span class="badge <?= $p['jenis'] === 'tukang' ? 'badge-tukang' : 'badge-pelayan' ?> fw-normal"><?= ucfirst($p['jenis']) ?></span>
           <?php if (!$p['aktif']): ?><span class="badge text-bg-secondary fw-normal">Nonaktif</span><?php endif; ?>
         </div>
         <div class="small-muted"><?= hari_peran($p['hari_tukang'], $p['hari_pelayan']) ?><?= $p['kasbon'] > 0 ? ' · kasbon <span class="text-danger">' . rp($p['kasbon']) . '</span>' : '' ?>

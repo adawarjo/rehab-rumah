@@ -33,17 +33,17 @@ unset($_SESSION['login_username']);
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#b45309">
+<meta name="theme-color" content="#ea580c">
 <title>Masuk · <?= e(setting('nama_proyek', 'Rehab Rumah')) ?></title>
 <link href="assets/vendor/bootstrap.min.css" rel="stylesheet">
 <link href="assets/vendor/bootstrap-icons.min.css" rel="stylesheet">
 <link href="assets/style.css" rel="stylesheet">
 <?php include __DIR__ . '/inc/pwa_head.php'; ?>
 </head>
-<body class="d-flex align-items-center" style="min-height:100vh;padding:0">
+<body class="d-flex align-items-center login-page" style="min-height:100vh;padding:0">
 <div class="container" style="max-width:380px">
   <div class="text-center mb-4">
-    <div class="d-inline-flex align-items-center justify-content-center rounded-circle text-white mb-2" style="width:64px;height:64px;background:var(--brand)">
+    <div class="logo-badge mb-3">
       <i class="bi bi-hammer fs-2"></i>
     </div>
     <h1 class="h5 fw-bold mb-0"><?= e(setting('nama_proyek', 'Rehab Rumah')) ?></h1>
