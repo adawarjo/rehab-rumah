@@ -130,6 +130,11 @@ a.card.stat:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(15,
   .main-content { margin: 0 !important; max-width: none; }
   .card { box-shadow: none; border: 1px solid #ddd; }
   .hero, .hero-danger { color: #000; background: #fff; border: 1px solid #ddd; }
+  .hero .text-white-50, .hero-danger .text-white-50 { color: #475569 !important; }
+  .hero .text-white, .hero-danger .text-white { color: #000 !important; }
+  .hero .progress { background: var(--line) !important; }
+  .hero .progress-bar.bg-warning { background-color: var(--brand) !important; }
+  .rekap-hari { break-inside: avoid; }
 }
 
 /* ===== Login ===== */
@@ -165,3 +170,14 @@ a.card.stat:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(15,
 .offline-bar { position: sticky; top: 56px; z-index: 1025; background: #334155; color: #fff; font-size: .8rem; text-align: center; padding: 6px 12px; }
 @media (min-width: 992px) { .offline-bar { margin-left: 230px; } }
 @media (display-mode: standalone) { .topbar { padding-top: env(safe-area-inset-top); } }
+
+/* Rekap honor per tanggal: baris tanggal bisa dibuka untuk rincian per orang */
+.rekap-hari > summary { list-style: none; cursor: pointer; }
+.rekap-hari > summary::-webkit-details-marker { display: none; }
+.rekap-hari > summary .chevron { color: #94a3b8; transition: transform .2s; }
+.rekap-hari[open] > summary { background: var(--brand-soft); }
+.rekap-hari[open] > summary .chevron { transform: rotate(180deg); }
+.rekap-detail { background: #fafbfd; border-bottom: 1px solid var(--line-soft); padding: .3rem .95rem .5rem 1.5rem; }
+.rekap-detail .orang { display: flex; justify-content: space-between; align-items: center; gap: .5rem; padding: .45rem 0; font-size: .875rem; border-bottom: 1px dashed var(--line); }
+.rekap-detail .orang:last-child { border-bottom: 0; }
+.badge-lunas { background: #dcfce7; color: #166534; } .badge-sebagian { background: #fef3c7; color: #92400e; } .badge-belum { background: #fee2e2; color: #991b1b; }

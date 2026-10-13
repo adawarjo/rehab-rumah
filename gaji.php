@@ -71,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $pid = (int)($_GET['pekerja'] ?? 0);
 $sampai = get_date('sampai', date('Y-m-d'));
 
+$header_action = '<a href="rekap_honor.php" class="btn btn-outline-primary btn-sm bg-white"><i class="bi bi-calendar3"></i> Rekap per tanggal</a>';
 require 'inc/header.php';
 
 // ================= Form pembayaran satu pekerja =================

@@ -29,7 +29,7 @@ Syarat: situs dibuka lewat **HTTPS** (hosting dengan SSL, mis. Let's Encrypt gra
 2. **Data Pekerja** – tambah nama pekerja dan peran utamanya (hanya pilihan awal).
 3. **Absensi** (tiap hari) – pilih **peran hari itu** (Tukang/Pelayan), tandai Hadir / ½ hari / Absen + jam lembur. Orang yang sama bisa jadi tukang hari ini dan pelayan besok; pilihan awal mengikuti peran terakhirnya. Tarif dicatat per hari.
 4. **Kasbon Tukang** – catat saat tukang ambil uang; pelunasan tunai juga bisa dicatat.
-5. **Gaji / Honor** – pilih pekerja → sistem menghitung hari kerja yang belum dibayar, lembur, dan menawarkan potongan kasbon → Bayar → slip gaji (cetak / kirim WhatsApp). Absensi yang sudah dibayar terkunci; pembayaran bisa dibatalkan untuk membukanya lagi.
+5. **Gaji / Honor** – pilih pekerja → sistem menghitung hari kerja yang belum dibayar, lembur, dan menawarkan potongan kasbon → Bayar → slip gaji (cetak / kirim WhatsApp). Absensi yang sudah dibayar terkunci; pembayaran bisa dibatalkan untuk membukanya lagi. Tombol **Rekap per tanggal** menampilkan total honor tukang & pelayan tiap hari, status sudah/belum dibayar, dan rincian per orang.
 6. **Bahan Baku** – catat belanja per barang (jumlah × harga otomatis). Pilih **Tunai** atau **Bon**. Tombol "Simpan & tambah lagi" untuk satu nota berisi banyak barang.
 7. **Toko & Bon Bahan** – sisa hutang per toko, catat pembayaran/cicilan bon.
 8. **Pengeluaran Lain** – konsumsi, transport, sewa alat, buang puing, dll.
@@ -55,7 +55,7 @@ lib/fpdf/           library PDF (FPDF 1.86), tidak bisa dibuka langsung dari bro
 manifest.json, sw.js, offline.html   PWA (pasang di HP & mode offline)
 index.php           beranda / ringkasan
 absensi.php, rekap_absensi.php
-gaji.php, slip.php, kasbon.php, pekerja.php
+gaji.php, rekap_honor.php, slip.php, kasbon.php, pekerja.php
 bahan.php, toko.php, lain.php
 laporan.php, pengaturan.php, login.php, logout.php, captcha.php
 ```

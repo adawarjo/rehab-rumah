@@ -149,3 +149,7 @@ document.addEventListener('submit', function (e) {
   document.getElementById('captcha-baru').addEventListener('click', () => { baru(); input.focus(); });
   window.addEventListener('pageshow', e => { if (e.persisted) baru(); });
 })();
+
+// Saat mencetak, buka semua rincian <details> agar ikut tercetak, lalu tutup lagi
+window.addEventListener('beforeprint', () => document.querySelectorAll('details:not([open])').forEach(d => { d.open = true; d.dataset.tutupLagi = '1'; }));
+window.addEventListener('afterprint', () => document.querySelectorAll('details[data-tutup-lagi]').forEach(d => { d.open = false; delete d.dataset.tutupLagi; }));

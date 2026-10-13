@@ -62,5 +62,8 @@ require 'inc/header.php';
     <div class="small-muted mt-2">T = tukang · P = pelayan · ½ = setengah hari · ✗ absen · angka kecil = jam lembur. Upah memakai tarif yang tercatat per hari.</div>
   </div>
 </div>
-<button onclick="window.print()" class="btn btn-light d-print-none"><i class="bi bi-printer"></i> Cetak</button>
+<div class="d-flex flex-wrap gap-2 d-print-none">
+  <button onclick="window.print()" class="btn btn-light"><i class="bi bi-printer"></i> Cetak</button>
+  <a href="rekap_honor.php?<?= e(http_build_query(['dari' => $dari, 'sampai' => $sampai])) ?>" class="btn btn-outline-primary bg-white"><i class="bi bi-calendar3"></i> Rekap honor per tanggal</a>
+</div>
 <?php require 'inc/footer.php'; ?>
